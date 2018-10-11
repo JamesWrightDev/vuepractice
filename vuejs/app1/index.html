@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+	<style>
+		body{
+			margin: 1em;
+			padding: 0;
+			font-family: sans-serif;
+		}
+
+		.color-red{
+			color: red;
+		}
+		.color-blue{
+			color: blue;
+		}
+		.is-loading{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<!-- Bind to HTML element -->
+	<div id="root">
+		<!-- Vue For Loop -->
+		<li v-for="name in names" v-text="name">
+		</li>
+		
+		<!-- V-model is for inputs -->
+		<input type="text" v-model="newName">
+		<button @click="addName">Add Name</button>
+
+		<h1>Lesson 2</h1>
+		<!-- V-bind:attribute will bind the html artibute to data -->
+		<button v-bind:title="title" >Hover Over Me</button>
+
+		<h1 :class="className">Color</h1>
+		<!-- The vale of the disabled attribute is binded to the isDisabled data value. 
+			The class is determined by a wether the value of 'isLoading' is true or not. We set the value in data object. 
+			On click the toggleClass method is fired. 
+			 -->
+		<button v-bind:disabled="isDisabled" :class="{'is-loading' : isLoading }" @click="toggleClass">{{buttonLabel
+		}}</button>
+		
+		<!-- On click run Disable Button method in Methods Object -->
+		<button @click="disableButton">Disable Button</button>
+
+
+	</div>
+		
+	<script>
+		
+
+	
+
+		const app = new Vue
+		({
+			// Where the Vue App is mounted to. 
+			el: '#root',
+
+			// Source of All data. 
+			data: {
+				newName: '',
+				foo: '',
+				names: ['james', 'john', 'jack'],
+				title: 'tilte is now wahtever',
+				className: "color-red",
+				isLoading: false,
+				isDisabled: false,
+				buttonLabel: 'Enabled',
+
+				
+
+			},
+
+			// All Methods need to be in a Methods Object. 
+			methods:{
+				// New Method can be accessed.
+				addName(){
+					// THIS referes to data object.
+					// Using normal Javascript methods. 
+					this.names.push(this.newName);
+					this.newName = '';
+				},
+				toggleClass(){
+					this.isLoading = true;
+
+				},
+				disableButton(){
+					this.isDisabled = true;
+					this.buttonLabel = 'Disabled';
+				}
+			}
+		})
+
+
+	</script>
+</body>
+</html>

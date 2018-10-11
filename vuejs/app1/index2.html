@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+	<style>
+		body{
+			margin: 1em;
+			padding: 0;
+			font-family: sans-serif;
+		}
+
+		.color-red{
+			color: red;
+		}
+		.color-blue{
+			color: blue;
+		}
+		.is-loading{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<!-- Bind to HTML element -->
+		<div id="root">
+		
+			<h1>
+				{{ reversedMessage }}
+			</h1>
+			<input type="text" v-model="newTask">
+			<button @click="addTask">Add NewTask</button>
+
+			<h1>Al Tasks</h1>
+			<ul>
+				<li v-for='task in tasks' v-text="task.description"></li>
+					
+					
+			</ul>
+			<h1>Incomplete Tasks</h1>
+			
+			<ul>
+				<li v-for='task in incompleted'>
+					{{task.description}}
+					<button @click="markCompleted(task)">Mark completed</button>
+
+				</li> 
+					
+			</ul>
+			<h1>Completed Tasks</h1>
+			<ul>
+				<li v-for="task in completed">
+					{{task.description}}
+				</li>
+			</ul>			
+
+
+		</div>
+			
+		<script>
+		
+
+	
+
+		const app = new Vue
+		({
+			// Where the Vue App is mounted to. 
+			el: '#root',
+
+			// Source of All data. 
+			data: {
+				newTask: '',
+				message: 'Hello',
+				tasks:[
+					// {
+					// 	description: 'Go to the store',
+					// 	completed: false
+					// },
+					// {
+					// 	description: 'Do home Work',
+					// 	completed: false
+					// },
+					// {
+					// 	description:'Do the dishes', 
+					// 	completed: true
+					// }
+
+					],
+
+			},
+
+			computed: {
+				reversedMessage(){
+					return this.message.split('').reverse().join('');
+				},
+				incompleted(){
+					return this.tasks.filter(task => ! task.completed);
+				},
+				completed(){
+					return this.tasks.filter(task => task.completed);
+				}
+
+			},
+
+			// All Methods need to be in a Methods Object. 
+			methods:{
+				markCompleted(task){
+					task.completed = true;
+
+				},
+				addTask(){
+					const newTask = this.newTask;
+					
+					this.tasks.push(
+					{
+						description: newTask,
+						completed: false
+					});
+
+					this.newTask = '';
+				}
+
+			}
+		})
+
+
+	</script>
+</body>
+</html>

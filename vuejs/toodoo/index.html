@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+	<style>
+		body{
+			margin: 1em;
+			padding: 0;
+			font-family: sans-serif;
+		}
+
+		.color-red{
+			color: red;
+		}
+		.color-blue{
+			color: blue;
+		}
+		.is-loading{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<!-- Bind to HTML element -->
+		<div id="root" class="container">
+		
+			
+			<input type="text" v-model="newTask" class="input" required>
+			<button @click="addTask" class="button is-primary is-small">Add NewTask</button>			
+			<h1>Incomplete Tasks</h1>
+			
+			<ul>
+				<li v-for='task in incompleted'>
+					{{task.description}}
+				<button @click="markCompleted(task)" class="button is-primary is-small">Mark completed</button>
+				
+				</li> 
+					
+			</ul>
+			<h1>Completed Tasks</h1>
+			<ul>
+				<li v-for="task in completed">
+					{{task.description}}
+				</li>
+			</ul>
+			<h1>Al Tasks</h1>
+			<ul>
+				<li v-for='task in tasks' v-text="task.description"></li>
+					
+					
+			</ul>			
+
+		<footer>Built with Vue js</footer>
+		</div>
+			
+		<script>
+		
+
+	
+
+		const app = new Vue
+		({
+			// Where the Vue App is mounted to. 
+			el: '#root',
+
+			// Source of All data. 
+			data: {
+				newTask: '',
+				message: 'Hello',
+				tasks:[],
+
+			},
+
+			computed: {
+				
+				incompleted(){
+					return this.tasks.filter(task => ! task.completed);
+				},
+				completed(){
+					return this.tasks.filter(task => task.completed);
+				}
+
+			},
+
+			// All Methods need to be in a Methods Object. 
+			methods:{
+				markCompleted(task){
+					task.completed = true;
+
+				},
+				addTask(){
+					const newTask = this.newTask;
+					
+					this.tasks.push(
+					{
+						description: newTask,
+						completed: false
+					});
+
+					this.newTask = '';
+				}
+
+			}
+		})
+
+
+	</script>
+</body>
+</html>

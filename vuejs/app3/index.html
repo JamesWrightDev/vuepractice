@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+
+</head>
+<body>
+	<!-- Bind to HTML element -->
+		<div id="root" class="container">
+			<message title="hello Word" body="Lorem ipsum dolor sit amet." ></message>
+			<!-- Test -->
+			<h1>Modal</h1>
+			<modal v-if="showModal" @close="showModal = false"></modal>
+			<button @click="showModal = true" >Show Modal</button>
+
+			<h1>Tabs</h1>
+			<tabs>
+				<tab name="About" :selected="true" >
+					<h1>This is about us</h1>
+				</tab>
+				<tab name="About our culture">
+					<h1>About our culture and stuff</h1>
+				</tab>
+				<tab name="What we do">
+					<h1>This is what we do</h1>
+				</tab>
+
+
+			</tabs>	
+		</div>
+
+	<script src="main.js"></script>
+</body>
+</html>
