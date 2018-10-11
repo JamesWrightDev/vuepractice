@@ -1,0 +1,26 @@
+<!-- NAMED SLOTS -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+
+</head>
+<body>
+	<!-- Bind to HTML element -->
+		<div id="root" class="container">
+			<modal>
+				<template slot="header">Hello!</template>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, blanditiis ipsam distinctio praesentium modi asperiores quae fugit autem, officia tenetur repudiandae laborum, est explicabo vitae. Veniam repellat reprehenderit aliquam saepe.
+				<template slot="footer">
+			      <button class="button is-success">Save changes</button>
+				</template>
+			</modal>
+		</div>
+
+	<script src="main.js"></script>
+</body>
+</html>

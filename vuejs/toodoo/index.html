@@ -5,6 +5,9 @@
 	<title>Document</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
 	<style>
 		body{
 			margin: 1em;
@@ -27,35 +30,48 @@
 	<!-- Bind to HTML element -->
 		<div id="root" class="container">
 		
+			<div class="columns is-gapless">
+				<div class="column">
+					<div class="field">
+						 
+						  <div class="control">
+						    <input class="input" type="text" placeholder="Add a New Task" v-model="newTask">
+						  </div>
+						</div>
+						
+						
+
+				</div>
+				<div class="column">
+					<div class="field is-grouped">
+						  <div class="control">
+						    <button class="button is-link" @click="addTask">Add Task</button>
+						  </div>
+				</div>
+			</div>
+		</div>
+						
+			<h1 class="is-size-3">Incomplete Tasks</h1>
 			
-			<input type="text" v-model="newTask" class="input" required>
-			<button @click="addTask" class="button is-primary is-small">Add NewTask</button>			
-			<h1>Incomplete Tasks</h1>
-			
-			<ul>
-				<li v-for='task in incompleted'>
-					{{task.description}}
-				<button @click="markCompleted(task)" class="button is-primary is-small">Mark completed</button>
 				
+				<ul>
+
+				<li v-for='task in incompleted' class="is-size-5">
+					{{task.description}}
+				<i class="fas fa-check fa-lg" @click="markCompleted(task)"></i>
 				</li> 
 					
 			</ul>
-			<h1>Completed Tasks</h1>
+			<h1 class="is-size-3">Completed Tasks</h1>
 			<ul>
 				<li v-for="task in completed">
 					{{task.description}}
 				</li>
 			</ul>
-			<h1>Al Tasks</h1>
-			<ul>
-				<li v-for='task in tasks' v-text="task.description"></li>
-					
-					
-			</ul>			
 
-		<footer>Built with Vue js</footer>
 		</div>
-			
+			<div>
+			</div>
 		<script>
 		
 
